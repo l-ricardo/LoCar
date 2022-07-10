@@ -6,7 +6,7 @@ int main(){
     // loop infinito do programa
 	while(1){
 
-		opcao = menu(); // obtém a escolha do usuário
+		opcao = menu(); // obtï¿½m a escolha do usuï¿½rio
 
 		// testa o valor de "opcao"
 		if(opcao == '1') cadastrar_veiculo();
@@ -32,7 +32,7 @@ int main(){
 }
 
 
-// função que exibe o menu e retorna a opção escolhida pelo usuário
+// funï¿½ï¿½o que exibe o menu e retorna a opï¿½ï¿½o escolhida pelo usuï¿½rio
 char menu(){
 	char opcao;
 
@@ -55,14 +55,14 @@ char menu(){
 	// limpando o buffer do teclado
     fseek(stdin, 0, SEEK_END);
 
-	// se chegou aqui, é porque a opção é válida
+	// se chegou aqui, ï¿½ porque a opï¿½ï¿½o ï¿½ vï¿½lida
 	return opcao;
 }
 
 
 //*************************************FUNCOES AUXILIARES***********************************
 
-// função que verifica se uma string contém somente números
+// funï¿½ï¿½o que verifica se uma string contï¿½m somente nï¿½meros
 int str_somente_numeros(char str[]){
 	int i = 0;
 	int len_str = strlen(str);
@@ -75,105 +75,105 @@ int str_somente_numeros(char str[]){
 }
 
 
-// função que verifica se um veiculo existe, retorna 0 se NÃO existe e 1 caso contrário
+// funï¿½ï¿½o que verifica se um veiculo existe, retorna 0 se Nï¿½O existe e 1 caso contrï¿½rio
 int existe_veiculo(FILE *arq_veiculo, int id_veiculo){
-	// vai para o início do arquivo, pois não sabemos a posição do ponteiro no arquivo
+	// vai para o inï¿½cio do arquivo, pois nï¿½o sabemos a posiï¿½ï¿½o do ponteiro no arquivo
 	rewind(arq_veiculo);
 
 	t_veiculo veiculo;
 	// loop para percorrer o arquivo
-	// busca linear O(n), como o ID é crescente é possível fazer uma busca binária O(log(n))
+	// busca linear O(n), como o ID ï¿½ crescente ï¿½ possï¿½vel fazer uma busca binï¿½ria O(log(n))
 	while(1){
 
-		// fread retorna o número de elementos lidos com sucesso
+		// fread retorna o nï¿½mero de elementos lidos com sucesso
 		size_t result = fread(&veiculo, sizeof(t_veiculo), 1, arq_veiculo);
 
-		// se for 0, é porque não há mais elemento, então sai do loop
+		// se for 0, ï¿½ porque nï¿½o hï¿½ mais elemento, entï¿½o sai do loop
 		if(result == 0) break;
 
-		// verifica se o ID é igual
+		// verifica se o ID ï¿½ igual
 		if(veiculo.id == id_veiculo)
 			return 1;
 	}
 
-	// se chegou aqui é porque NÃO existe o veiculo, então retorna 0
+	// se chegou aqui ï¿½ porque Nï¿½O existe o veiculo, entï¿½o retorna 0
 	return 0;
 }
 
 
-// função que verifica se um cliente existe, retorna 0 se NÃO existe e 1 caso contrário
+// funï¿½ï¿½o que verifica se um cliente existe, retorna 0 se Nï¿½O existe e 1 caso contrï¿½rio
 int existe_cliente(FILE *arq_cliente, int id_cliente){
-	// vai para o início do arquivo
+	// vai para o inï¿½cio do arquivo
 	rewind(arq_cliente);
 
 	t_cliente cliente;
 	// loop para percorrer o arquivo
-	// busca linear O(n), como o ID é crescente é possível fazer uma busca binária O(log(n))
+	// busca linear O(n), como o ID ï¿½ crescente ï¿½ possï¿½vel fazer uma busca binï¿½ria O(log(n))
 	while(1){
-		// fread retorna o número de elementos lidos com sucesso
+		// fread retorna o nï¿½mero de elementos lidos com sucesso
 		size_t result = fread(&cliente, sizeof(t_cliente), 1, arq_cliente);
 
-		// se for 0, é porque não há mais elemento, então sai do loop
+		// se for 0, ï¿½ porque nï¿½o hï¿½ mais elemento, entï¿½o sai do loop
 		if(result == 0) break;
 
-		// verifica se o ID é igual
+		// verifica se o ID ï¿½ igual
 		if(cliente.id == id_cliente)
 			return 1;
 	}
 
-	// se chegou aqui é porque NÃO existe o cliente, então retorna 0
+	// se chegou aqui ï¿½ porque Nï¿½O existe o cliente, entï¿½o retorna 0
 	return 0;
 }
 
 
-// função que obtém um cliente pelo ID
+// funï¿½ï¿½o que obtï¿½m um cliente pelo ID
 t_cliente *obter_cliente(FILE *arq_clientes, int id_cliente){
-	// vai para o início do arquivo
+	// vai para o inï¿½cio do arquivo
 	rewind(arq_clientes);
 
 	t_cliente *cliente;
 
 	// loop para percorrer o arquivo
-	// busca linear O(n), como o ID é crescente é possível fazer uma busca binária O(log(n))
-	// aloca espaço mesmo sem saber se o cliente existe
+	// busca linear O(n), como o ID ï¿½ crescente ï¿½ possï¿½vel fazer uma busca binï¿½ria O(log(n))
+	// aloca espaï¿½o mesmo sem saber se o cliente existe
 	cliente = (t_cliente *)malloc(sizeof(t_cliente));
 	while(1){
 
-		// fread retorna o número de elementos lidos com sucesso
+		// fread retorna o nï¿½mero de elementos lidos com sucesso
 		size_t result = fread(cliente, sizeof(t_cliente), 1, arq_clientes);
 
-		// se for 0, é porque não há mais elemento, então sai do loop
+		// se for 0, ï¿½ porque nï¿½o hï¿½ mais elemento, entï¿½o sai do loop
 		if(result == 0){
-			free(cliente); // libera a mémoria, pois o cliente não foi encontrado
+			free(cliente); // libera a mï¿½moria, pois o cliente nï¿½o foi encontrado
 			return NULL;
 		}
-		// verifica se os ID's são iguais
+		// verifica se os ID's sï¿½o iguais
 		if(cliente->id == id_cliente) break;
 	}
 	return cliente;
 }
 
 
-// função que obtém um veiculo pelo ID
+// funï¿½ï¿½o que obtï¿½m um veiculo pelo ID
 t_veiculo *obter_veiculo(FILE *arq_veiculo, int id_veiculo){
-	// vai para o início do arquivo
+	// vai para o inï¿½cio do arquivo
 	rewind(arq_veiculo);
 
 	// loop para percorrer o arquivo
-	// busca linear O(n), como o ID é crescente é possível fazer uma busca binária O(log(n))
+	// busca linear O(n), como o ID ï¿½ crescente ï¿½ possï¿½vel fazer uma busca binï¿½ria O(log(n))
 	t_veiculo *veiculo;
 
-	// aloca espaço mesmo sem saber se o veiculo existe
+	// aloca espaï¿½o mesmo sem saber se o veiculo existe
 	veiculo = (t_veiculo *)malloc(sizeof(t_veiculo));
 	while(1){
 
-		// fread retorna o número de elementos lidos com sucesso
+		// fread retorna o nï¿½mero de elementos lidos com sucesso
 		size_t result = fread(veiculo, sizeof(t_veiculo), 1, arq_veiculo);
 
-		// se for 0, é porque não há mais elemento, então sai do loop
+		// se for 0, ï¿½ porque nï¿½o hï¿½ mais elemento, entï¿½o sai do loop
 		if(result == 0) break;
 
-		// verifica se os ID's são iguais
+		// verifica se os ID's sï¿½o iguais
 		if(veiculo->id == id_veiculo) return veiculo;
 	}
 	free(veiculo); // libera recursos
@@ -181,21 +181,21 @@ t_veiculo *obter_veiculo(FILE *arq_veiculo, int id_veiculo){
 }
 
 
-// função para atualizar um veiculo, recebe o ponteiro para o arquivo e o veiculo
+// funï¿½ï¿½o para atualizar um veiculo, recebe o ponteiro para o arquivo e o veiculo
 void atualizar_veiculo(FILE *arq_veiculo, t_veiculo *veiculo_alugado){
-	// vai para o início do arquivo
+	// vai para o inï¿½cio do arquivo
 	rewind(arq_veiculo);
 
 	t_veiculo veiculo;
 	// loop para percorrer o arquivo
 	while(1){
-		// fread retorna o número de elementos lidos com sucesso
+		// fread retorna o nï¿½mero de elementos lidos com sucesso
 		size_t result = fread(&veiculo, sizeof(t_veiculo), 1, arq_veiculo);
 
-		// se for 0, é porque não há mais elemento, então sai do loop
+		// se for 0, ï¿½ porque nï¿½o hï¿½ mais elemento, entï¿½o sai do loop
 		if(result == 0) break;
 
-		// verifica se os ID's são iguais
+		// verifica se os ID's sï¿½o iguais
 		if(veiculo.id == veiculo_alugado->id){
 			// fseek posiciona o arquivo
 			fseek(arq_veiculo, - sizeof(t_veiculo), SEEK_CUR);
@@ -209,11 +209,11 @@ void atualizar_veiculo(FILE *arq_veiculo, t_veiculo *veiculo_alugado){
 
 //*************************************FUNCOES SUBMENU***********************************
 
-// função para cadastrar cliente
+// funï¿½ï¿½o para cadastrar cliente
 void cadastrar_cliente(){
 	// abre o arquivo para escrita
 	// a+b => acrescenta dados ao final do arquivo ou cria
-	// um arquivo binária para leitura e escrita
+	// um arquivo binï¿½ria para leitura e escrita
 	FILE *arq_cliente;
 	arq_cliente = fopen("clientes.bin", "a+b");
 
@@ -222,41 +222,41 @@ void cadastrar_cliente(){
 		printf("\nFalha ao abrir arquivo(s)!\n");
 		exit(1);
 	}
-	/*NÃO é interessante que o usuário digite o ID do cliente, esse
-    ID tem que ser gerado automático, então temos que pegar o
-    ID do último usuário cadastrado */
+	/*Nï¿½O ï¿½ interessante que o usuï¿½rio digite o ID do cliente, esse
+    ID tem que ser gerado automï¿½tico, entï¿½o temos que pegar o
+    ID do ï¿½ltimo usuï¿½rio cadastrado */
 	int cont_bytes = 0;
 
-	// cont irá guardar o número total de bytes
+	// cont irï¿½ guardar o nï¿½mero total de bytes
 	// seta o ponteiro do arquivo para o final do arquivo
 	fseek(arq_cliente, 0, SEEK_END);
-	// pegamos a quantidade de bytes com a função ftell
+	// pegamos a quantidade de bytes com a funï¿½ï¿½o ftell
 	cont_bytes = ftell(arq_cliente);
 
 	t_cliente cliente;
 
 	if(cont_bytes == 0){
-		// se for 0, então não existe cliente cadastrado
-		// coloco o ID começando de 1
+		// se for 0, entï¿½o nï¿½o existe cliente cadastrado
+		// coloco o ID comeï¿½ando de 1
 		cliente.id = 1;
 	}
 	else{
 		t_cliente ultimo_cliente;
 
-		// utilizo a função fseek para posicionar o arquivo
+		// utilizo a funï¿½ï¿½o fseek para posicionar o arquivo
 		// cont_bytes - sizeof(t_cliente) serve para posicionar
-		// para que possamos pegar o último cliente cadastrado
+		// para que possamos pegar o ï¿½ltimo cliente cadastrado
 		fseek(arq_cliente, cont_bytes - sizeof(t_cliente), SEEK_SET);
 
 		// ler o cliente
 		fread(&ultimo_cliente, sizeof(t_cliente), 1, arq_cliente);
 
-		// o ID do cliente é o ID do último cliente acrescido em 1
+		// o ID do cliente ï¿½ o ID do ï¿½ltimo cliente acrescido em 1
 		cliente.id = ultimo_cliente.id + 1;
 	}
 	system("cls"); //limpa o menu da tela
     printf("Cadastrando um novo cliente...\n");
-	// ^\n indica para pegar até a quebra de linha
+	// ^\n indica para pegar atï¿½ a quebra de linha
 	// %*c descarta o enter
 	// %99 pega somente os 99 primeiros caracteres digitados
 	printf("\nDigite o nome do cliente: ");
@@ -289,7 +289,7 @@ void cadastrar_cliente(){
 	// limpando o buffer do teclado
     fseek(stdin, 0, SEEK_END);
 
-	// se o ponteiro não estiver no final do arquivo nada é escrito
+	// se o ponteiro nï¿½o estiver no final do arquivo nada ï¿½ escrito
 	fseek(arq_cliente, 0, SEEK_END);
 	// escreve no arquivo
 	fwrite(&cliente, sizeof(t_cliente), 1, arq_cliente);
@@ -306,11 +306,11 @@ void cadastrar_cliente(){
 }
 
 
-// função para cadastrar veiculos
+// funï¿½ï¿½o para cadastrar veiculos
 void cadastrar_veiculo(){
 	// abre o arquivo para escrita
 	// a+b => acrescenta dados ao final do arquivo ou cria
-	// um arquivo binária para leitura e escrita
+	// um arquivo binï¿½ria para leitura e escrita
 	FILE *arq_veiculo;
 	arq_veiculo = fopen("veiculo.txt", "a+b");
 
@@ -322,40 +322,40 @@ void cadastrar_veiculo(){
 
 	t_veiculo veiculo;
 
-	/*NÃO é interessante que o usuário digite o ID do veiculo, esse
-    ID tem que ser gerado automático, então temos que pegar o
-    ID do último veiculo cadastrado*/
+	/*Nï¿½O ï¿½ interessante que o usuï¿½rio digite o ID do veiculo, esse
+    ID tem que ser gerado automï¿½tico, entï¿½o temos que pegar o
+    ID do ï¿½ltimo veiculo cadastrado*/
 	int cont_bytes = 0;
 
 	// seta o ponteiro do arquivo para o final do arquivo
 	fseek(arq_veiculo, 0, SEEK_END);
-	// cont irá guardar o número total de bytes
+	// cont irï¿½ guardar o nï¿½mero total de bytes
 	cont_bytes = ftell(arq_veiculo);
 
 	if(cont_bytes == 0){
-		// se for 0, então não existe veiculo cadastrado
-		// coloco o ID começando de 1
+		// se for 0, entï¿½o nï¿½o existe veiculo cadastrado
+		// coloco o ID comeï¿½ando de 1
 		veiculo.id = 1;
 	}
 	else{
 		t_veiculo ultimo_veiculo;
 
-		// utiliza a função fseek para posicionar o arquivo
+		// utiliza a funï¿½ï¿½o fseek para posicionar o arquivo
 		// cont_bytes - sizeof(t_cliente) serve para posicionar
-		// para que possamos pegar o último veiculo cadastrado
+		// para que possamos pegar o ï¿½ltimo veiculo cadastrado
 		fseek(arq_veiculo, cont_bytes - sizeof(t_veiculo), SEEK_SET);
 
 		// ler o veiculo
 		fread(&ultimo_veiculo, sizeof(t_veiculo), 1, arq_veiculo);
 
-		// o ID do veiculo é o ID do último veiculo acrescido em 1
+		// o ID do veiculo ï¿½ o ID do ï¿½ltimo veiculo acrescido em 1
 		veiculo.id = ultimo_veiculo.id + 1;
 	}
 	system("cls"); //limpa o menu da tela
     printf("Cadastrando um novo veiculo...\n");
 
-	// obtém o modelo do veiculo
-	// ^\n indica para pegar até a quebra de linha
+	// obtï¿½m o modelo do veiculo
+	// ^\n indica para pegar atï¿½ a quebra de linha
 	// %*c descarta o enter
 	// %49 eh a quantidade de caracteres que serao pegos
 	printf("\nDigite o modelo do veiculo: ");
@@ -378,18 +378,18 @@ void cadastrar_veiculo(){
 		float float_preco;
 		int somente_numeros = 1;
 
-		// obtém o preço da diaria do veiculo
+		// obtï¿½m o preï¿½o da diaria do veiculo
 		printf("Digite o valor da diaria do veiculo: ");
 		scanf("%5s%*c", str_preco);
         // limpando o buffer do teclado
         fseek(stdin, 0, SEEK_END);
 
-		// verifica se o preço possui somente números
+		// verifica se o preï¿½o possui somente nï¿½meros
 		somente_numeros = str_somente_numeros(str_preco);
-		// verifica se o preço contém somente números
+		// verifica se o preï¿½o contï¿½m somente nï¿½meros
 		if(somente_numeros == 1){
-			// se chegou aqui, é porque tudo está validado
-			// preenche a variável float_preco com o valor de str_preco
+			// se chegou aqui, ï¿½ porque tudo estï¿½ validado
+			// preenche a variï¿½vel float_preco com o valor de str_preco
 			int int_preco;
 			// exemplo: 459,50 deve digitar 45950
 			sscanf(str_preco, "%i", &int_preco);
@@ -399,10 +399,10 @@ void cadastrar_veiculo(){
 		}
 	}while(1);
 
-	// inicializa o id_cliente com -1 indicando que o veiculo NÃO está alugado
+	// inicializa o id_cliente com -1 indicando que o veiculo Nï¿½O estï¿½ alugado
 	veiculo.id_cliente = -1;
 
-	// se o ponteiro não estiver no final do arquivo nada é escrito
+	// se o ponteiro nï¿½o estiver no final do arquivo nada ï¿½ escrito
 	fseek(arq_veiculo, 0, SEEK_END);
 	// escreve no arquivo
 	fwrite(&veiculo, sizeof(t_veiculo), 1, arq_veiculo);
@@ -419,9 +419,9 @@ void cadastrar_veiculo(){
 }
 
 
-// função para listar todos os clientes
+// funï¿½ï¿½o para listar todos os clientes
 void listar_cliente(){
-	// rb => abre arquivo binário para leitura apenas
+	// rb => abre arquivo binï¿½rio para leitura apenas
 	FILE *arq_cliente;
 	arq_cliente = fopen("clientes.bin", "rb");
 
@@ -435,7 +435,7 @@ void listar_cliente(){
 		return;
 	}
 
-	// variável que indica se encontrou pelo menos 1 cliente
+	// variï¿½vel que indica se encontrou pelo menos 1 cliente
 	int encontrou_cliente = 0;
 	t_cliente cliente;
 
@@ -443,13 +443,13 @@ void listar_cliente(){
 	printf("Listando todos os clientes...\n");
 	// loop para percorrer o arquivo
 	while(1){
-		// fread retorna o número de elementos lidos com sucesso
+		// fread retorna o nï¿½mero de elementos lidos com sucesso
 		size_t result = fread(&cliente, sizeof(t_cliente), 1, arq_cliente);
 
-		// se for 0, é porque não há mais elemento, então sai do loop
+		// se for 0, ï¿½ porque nï¿½o hï¿½ mais elemento, entï¿½o sai do loop
 		if(result == 0) break;
 
-		// atualiza a variável indicando que encontrou
+		// atualiza a variï¿½vel indicando que encontrou
 		// pelo menos um cliente
 		encontrou_cliente = 1;
 
@@ -474,17 +474,17 @@ void listar_cliente(){
 }
 
 
-// função para listar todos os veiculos
+// funï¿½ï¿½o para listar todos os veiculos
 void listar_veiculo(){
 	// lista de todos os veiculo
 
-	// rb => abre para leitura somente, ponteiro para o início do arquivo
+	// rb => abre para leitura somente, ponteiro para o inï¿½cio do arquivo
 	FILE *arq_veiculo;
 	arq_veiculo = fopen("veiculo.txt", "rb");
 	FILE *arq_cliente;
 	arq_cliente = fopen("clientes.bin", "rb");
 
-	// se o arquivo de veiculo não existe
+	// se o arquivo de veiculo nï¿½o existe
 	if(arq_veiculo == NULL){
 		printf("\nFalha ao abrir arquivo ou nenhum veiculo foi cadastrado ate o momento");
 		printf("\nPressione <Enter> para continuar...");
@@ -494,7 +494,7 @@ void listar_veiculo(){
 		return;
 	}
 
-	// variável que indica se encontrou pelo menos 1 veiculo
+	// variï¿½vel que indica se encontrou pelo menos 1 veiculo
 	int encontrou_veiculo = 0;
 
 	system("cls"); //limpa o menu da tela
@@ -503,13 +503,13 @@ void listar_veiculo(){
 	t_veiculo veiculo;
 
 	while(1){
-		// fread retorna o número de elementos lidos com sucesso
+		// fread retorna o nï¿½mero de elementos lidos com sucesso
 		size_t result = fread(&veiculo, sizeof(t_veiculo), 1, arq_veiculo);
 
-		// se for 0, é porque não há mais elemento, então sai do loop
+		// se for 0, ï¿½ porque nï¿½o hï¿½ mais elemento, entï¿½o sai do loop
 		if(result == 0) break;
 
-		// atualiza a variável indicando que encontrou
+		// atualiza a variï¿½vel indicando que encontrou
 		// pelo menos um veiculo
 		encontrou_veiculo = 1;
 
@@ -521,14 +521,14 @@ void listar_veiculo(){
 		printf("Valor da diaria: %.2f\n", veiculo.preco);
 
 
-		// se id_cliente for diferente de -1, então o veiculo está alugado, pois
-		// possui algum id válido do cliente que alugou o veiculo.
-		// se id_cliente for igual a -1, indica que o veiculo não está alugado,
-		// pois o id -1 NÃO é um id válido
+		// se id_cliente for diferente de -1, entï¿½o o veiculo estï¿½ alugado, pois
+		// possui algum id vï¿½lido do cliente que alugou o veiculo.
+		// se id_cliente for igual a -1, indica que o veiculo nï¿½o estï¿½ alugado,
+		// pois o id -1 Nï¿½O ï¿½ um id vï¿½lido
 		if(veiculo.id_cliente != -1){
-			// se o arquivo de clientes não existir, atenção esse teste
-			// não pode ser realizado no início da função, pois pode acontecer de
-			// todos os veiculos não estarem alugados
+			// se o arquivo de clientes nï¿½o existir, atenï¿½ï¿½o esse teste
+			// nï¿½o pode ser realizado no inï¿½cio da funï¿½ï¿½o, pois pode acontecer de
+			// todos os veiculos nï¿½o estarem alugados
 			if(arq_cliente == NULL){
 				printf("\nFalha ao abrir arquivo!\n");
 				fclose(arq_veiculo); // libera recursos
@@ -536,7 +536,7 @@ void listar_veiculo(){
 			}
 			t_cliente *cliente = obter_cliente(arq_cliente, veiculo.id_cliente);
 			printf("Alugado? Sim. Cliente: %s\n", cliente->nome);
-			free(cliente); // evita vazamento de memória
+			free(cliente); // evita vazamento de memï¿½ria
 		}
 		else
 			printf("Alugado? Nao\n");
@@ -559,7 +559,7 @@ void listar_veiculo(){
 }
 
 
-// função para pesquisar por algum veiculo
+// funï¿½ï¿½o para pesquisar por algum veiculo
 void pesquisar_veiculo(){
 	char modelo[100];
 	int encontrou_veiculo = 0;
@@ -582,20 +582,20 @@ void pesquisar_veiculo(){
 
 	printf("\nVeiculos do modelo \"%s\":\n\n", modelo);
 	// loop para percorrer o arquivo
-	// busca linear, pois o campo modelo não possui índice
+	// busca linear, pois o campo modelo nï¿½o possui ï¿½ndice
 	t_veiculo veiculo;
 	while(1){
-		// fread retorna o número de elementos lidos com sucesso
+		// fread retorna o nï¿½mero de elementos lidos com sucesso
 		size_t result = fread(&veiculo, sizeof(t_veiculo), 1, arq_veiculo);
 
-		// se for 0, é porque não há mais elemento, então sai do loop
+		// se for 0, ï¿½ porque nï¿½o hï¿½ mais elemento, entï¿½o sai do loop
 		if(result == 0) break;
 
 		char modelo_aux[100];
-		// faz uma cópia para não alterar veiculo.modelo
+		// faz uma cï¿½pia para nï¿½o alterar veiculo.modelo
 		strcpy(modelo_aux, veiculo.modelo);
 
-		// verifica se é igual
+		// verifica se ï¿½ igual
 		if(strcmp(strupr(modelo_aux), strupr(modelo)) == 0){
 			// mostra os dados do veiculo
             printf("\nID do veiculo: %i\n", veiculo.id);
@@ -605,7 +605,7 @@ void pesquisar_veiculo(){
             printf("Valor da diaria: %.2f\n", veiculo.preco);
 
 			if(veiculo.id_cliente != -1){
-				// se o arquivo de clientes não existir
+				// se o arquivo de clientes nï¿½o existir
 				if(arq_cliente == NULL){
 					printf("\nFalha ao abrir arquivo!\n");
 					fclose(arq_veiculo); // libera recursos
@@ -613,7 +613,7 @@ void pesquisar_veiculo(){
 				}
 				t_cliente *cliente = obter_cliente(arq_cliente, veiculo.id_cliente);
 				printf("Alugado? Sim. Cliente: %s\n", cliente->nome);
-				free(cliente); // evita vazamento de memória
+				free(cliente); // evita vazamento de memï¿½ria
 			}
 			else
 				printf("Alugado? Nao\n");
@@ -635,7 +635,7 @@ void pesquisar_veiculo(){
 }
 
 
-// função para pesquisar por algum cliente
+// funï¿½ï¿½o para pesquisar por algum cliente
 void pesquisar_cliente(){
 	char nome[100];
 	int encontrou_cliente = 0;
@@ -659,17 +659,17 @@ void pesquisar_cliente(){
 	// loop para percorrer o arquivo
 	t_cliente cliente;
 	while(1){
-		// fread retorna o número de elementos lidos com sucesso
+		// fread retorna o nï¿½mero de elementos lidos com sucesso
 		size_t result = fread(&cliente, sizeof(t_cliente), 1, arq_cliente);
 
-		// se for 0, é porque não há mais elemento, então sai do loop
+		// se for 0, ï¿½ porque nï¿½o hï¿½ mais elemento, entï¿½o sai do loop
 		if(result == 0) break;
 
 		char nome_aux[100];
-		// faz uma cópia para não alterar cliente->nome
+		// faz uma cï¿½pia para nï¿½o alterar cliente->nome
 		strcpy(nome_aux, cliente.nome);
 
-		// verifica se é igual
+		// verifica se ï¿½ igual
 		if(strcmp(strupr(nome_aux), strupr(nome)) == 0){
 			// mostra os dados do cliente
 			printf("ID do cliente: %i\n", cliente.id);
@@ -695,19 +695,19 @@ void pesquisar_cliente(){
 }
 
 
-// função responsável pelo aluguel dos veiculos
+// funï¿½ï¿½o responsï¿½vel pelo aluguel dos veiculos
 void alugar_veiculo(){
 	char str_id_cliente[10];
 	int id_cliente;
 
-	// rb+ abre para leitura/atualização
+	// rb+ abre para leitura/atualizaï¿½ï¿½o
 	FILE *arq_veiculo;
 	arq_veiculo = fopen("veiculo.txt", "rb+");
 	FILE *arq_cliente;
 	arq_cliente = fopen("clientes.bin", "rb+");
 
-	// se não conseguiu abrir, então cria o arquivo
-	// wb+ abre para escrita/atualização (cria o arquivo se ele NÃO existir)
+	// se nï¿½o conseguiu abrir, entï¿½o cria o arquivo
+	// wb+ abre para escrita/atualizaï¿½ï¿½o (cria o arquivo se ele Nï¿½O existir)
 	if(arq_veiculo == NULL){
 		arq_veiculo = fopen("veiculo.txt", "wb+");
 		if(arq_veiculo == NULL)	{
@@ -716,8 +716,8 @@ void alugar_veiculo(){
 		}
 	}
 
-	// se não conseguiu abrir, então cria o arquivo
-	// wb+ abre para escrita/atualização (cria o arquivo se ele NÃO existir)
+	// se nï¿½o conseguiu abrir, entï¿½o cria o arquivo
+	// wb+ abre para escrita/atualizaï¿½ï¿½o (cria o arquivo se ele Nï¿½O existir)
 	if(arq_cliente == NULL){
 		arq_cliente = fopen("clientes.bin", "wb+");
 		if(arq_cliente == NULL){
@@ -729,15 +729,15 @@ void alugar_veiculo(){
     system("cls"); //limpa o menu da tela
     printf("Alugando um veiculo...\n");
 
-	// obtém o ID do cliente
+	// obtï¿½m o ID do cliente
 	printf("\nDigite o ID do cliente: ");
 	scanf("%10s%*c", str_id_cliente);
 	// limpando o buffer do teclado
     fseek(stdin, 0, SEEK_END);
 
 	if(str_somente_numeros(str_id_cliente) == 1){
-		// se caiu aqui é porque o ID possui somente números, então
-		// preenche a variável "id_cliente" com o valor de "str_id_cliente"
+		// se caiu aqui ï¿½ porque o ID possui somente nï¿½meros, entï¿½o
+		// preenche a variï¿½vel "id_cliente" com o valor de "str_id_cliente"
 		sscanf(str_id_cliente, "%i", &id_cliente);
 
 		// verifica se o ID do do cliente existe
@@ -752,22 +752,22 @@ void alugar_veiculo(){
             fseek(stdin, 0, SEEK_END);
 
 			if(str_somente_numeros(str_id_veiculo) == 1){
-				// se chegou aqui é porque o ID do veiculo é válido
+				// se chegou aqui ï¿½ porque o ID do veiculo ï¿½ vï¿½lido
 				sscanf(str_id_veiculo, "%i", &id_veiculo);
 
-				// obtém o veiculo pelo ID
+				// obtï¿½m o veiculo pelo ID
 				t_veiculo *veiculo = obter_veiculo(arq_veiculo, id_veiculo);
 
 				// testa se o veiculo existe...
 				if(veiculo != NULL){
-					// se chegou aqui é porque o veiculo existe
-					// testa se o veiculo já está alugado
+					// se chegou aqui ï¿½ porque o veiculo existe
+					// testa se o veiculo jï¿½ estï¿½ alugado
 					if(veiculo->id_cliente != -1)
 						printf("\nO veiculo \"%s\" ja esta alugado!\n", veiculo->modelo);
 					else {
-						// se o veiculo NÃO está alugado, então seta o
+						// se o veiculo Nï¿½O estï¿½ alugado, entï¿½o seta o
 						// id_cliente do veiculo para associar o cliente
-						// ao aluguel do veiculo em questão
+						// ao aluguel do veiculo em questï¿½o
 						veiculo->id_cliente = id_cliente;
 						atualizar_veiculo(arq_veiculo, veiculo); // atualiza o veiculo no arquivo
 						printf("\nVeiculo \"%s\" alugado com sucesso!\n", veiculo->modelo);
@@ -798,17 +798,17 @@ void alugar_veiculo(){
 }
 
 
-// função responsável pela entrega dos veiculos
+// funï¿½ï¿½o responsï¿½vel pela entrega dos veiculos
 void entregar_veiculo(){
 	char str_id_veiculo[10];
 	int id_veiculo;
 
-	// rb+ abre para leitura/atualização
+	// rb+ abre para leitura/atualizaï¿½ï¿½o
 	FILE *arq_veiculo;
 	arq_veiculo = fopen("veiculo.txt", "rb+");
 
-	// se não conseguiu abrir, então cria o arquivo
-	// wb+ abre para escrita/atualização (cria o arquivo se ele NÃO existir)
+	// se nï¿½o conseguiu abrir, entï¿½o cria o arquivo
+	// wb+ abre para escrita/atualizaï¿½ï¿½o (cria o arquivo se ele Nï¿½O existir)
 	if(arq_veiculo == NULL){
 		arq_veiculo = fopen("veiculo.txt", "wb+");
 		if(arq_veiculo == NULL){
@@ -827,26 +827,26 @@ void entregar_veiculo(){
     fseek(stdin, 0, SEEK_END);
 
 	if(str_somente_numeros(str_id_veiculo) == 1){
-		// se chegou aqui é porque o ID do veiculo é válido
+		// se chegou aqui ï¿½ porque o ID do veiculo ï¿½ vï¿½lido
 		sscanf(str_id_veiculo, "%i", &id_veiculo);
 
-		// obtém o veiculo pelo ID
+		// obtï¿½m o veiculo pelo ID
 		t_veiculo *veiculo = obter_veiculo(arq_veiculo, id_veiculo);
 
 		// testa se o veiculo existe...
 		if(veiculo != NULL){
-			// se chegou aqui é porque o veiculo existe
-			// testa se o veiculo já foi entregue
+			// se chegou aqui ï¿½ porque o veiculo existe
+			// testa se o veiculo jï¿½ foi entregue
 			if(veiculo->id_cliente == -1)
 				printf("\nO veiculo \"%s\" ja esta disponivel!\n", veiculo->modelo);
 			else{
-				// se o veiculo NÃO foi entregue, então seta o
+				// se o veiculo Nï¿½O foi entregue, entï¿½o seta o
 				// id_cliente para -1 para indicar que ele foi entregue
 				veiculo->id_cliente = -1;
 				atualizar_veiculo(arq_veiculo, veiculo); // atualiza o veiculo no arquivo
 				printf("\nVeiculo \"%s\" entregue com sucesso!\n", veiculo->modelo);
 			}
-			free(veiculo); // libera memória
+			free(veiculo); // libera memï¿½ria
 		}
 		else
 			printf("\nNao existe veiculo com o ID \"%i\".\n", id_veiculo);
@@ -863,7 +863,7 @@ void entregar_veiculo(){
 	// limpando o buffer do teclado
     fseek(stdin, 0, SEEK_END);
 }
-//sub menu para exclusão de pessoas e veículos
+//sub menu para exclusï¿½o de pessoas e veï¿½culos
 void excluir(){
 char opcaodel;
 system("cls");
@@ -875,7 +875,7 @@ scanf("%1s%*c", &opcaodel);
 if(opcaodel == '1') excluir_veiculo();
 else if(opcaodel == '2') excluir_cliente();
 }
-//função responsável por excluir clientes
+//funï¿½ï¿½o responsï¿½vel por excluir clientes
 void excluir_cliente(){
     	char str_id_cliente[10];
 	int id_cliente;
@@ -889,9 +889,9 @@ void excluir_cliente(){
 	// limpando o buffer do teclado
     fseek(stdin, 0, SEEK_END);
 
-	// verifica se str_id_cliente só contém números
+	// verifica se str_id_cliente sï¿½ contï¿½m nï¿½meros
 	if(str_somente_numeros(str_id_cliente) == 1){
-		// se chegou aqui é porque o ID do cliente é válido
+		// se chegou aqui ï¿½ porque o ID do cliente ï¿½ vï¿½lido
 		sscanf(str_id_cliente, "%i", &id_cliente);
 
 		// rb abre para leitura (o arquivo deve existir)
@@ -906,40 +906,40 @@ void excluir_cliente(){
 		// verifica se o veiculo existe
 		if(existe_cliente(arq_cliente, id_cliente) == 1){
 			char nome_cliente[100];
-			// abre um novo arquivo temporário
+			// abre um novo arquivo temporï¿½rio
 			FILE *arq_temp = fopen("temp_cliente.bin", "a+b");
 			if(arq_temp == NULL){
 				printf("\nFalha ao criar arquivo temporario!\n");
 				fclose(arq_cliente);
 				exit(1); // aborta o programa
 			}
-			rewind(arq_cliente); // vai para o início do arquivo
+			rewind(arq_cliente); // vai para o inï¿½cio do arquivo
 			t_cliente cliente;
 
 			// loop para percorrer o arquivo
 			while(1){
 
-				// fread retorna o número de elementos lidos com sucesso
+				// fread retorna o nï¿½mero de elementos lidos com sucesso
 				size_t result = fread(&cliente, sizeof(t_cliente), 1, arq_cliente);
 
-				// se for 0, é porque não há mais elemento, então sai do loop
+				// se for 0, ï¿½ porque nï¿½o hï¿½ mais elemento, entï¿½o sai do loop
 				if(result == 0) break;
 
-				// só copia pro novo arquivo se for diferente
+				// sï¿½ copia pro novo arquivo se for diferente
 				if(cliente.id != id_cliente){
-					// escreve no arquivo temporário
+					// escreve no arquivo temporï¿½rio
 					fwrite(&cliente, sizeof(t_cliente), 1, arq_temp);
 				}
 				else
 					strcpy(nome_cliente, cliente.nome);
 			}
 
-			// antes de fazer operações de remover arquivo e renomear,
-			// é preciso fechar os dois arquivos
+			// antes de fazer operaï¿½ï¿½es de remover arquivo e renomear,
+			// ï¿½ preciso fechar os dois arquivos
 			fclose(arq_cliente);
 			fclose(arq_temp);
 
-			// depois de fechar o arquivo, então tentamos remover
+			// depois de fechar o arquivo, entï¿½o tentamos remover
 			if(remove("clientes.bin") != 0)
 				printf("\nErro ao deletar o arquivo \"clientes.bin\"\n");
 			else {
@@ -968,7 +968,7 @@ void excluir_cliente(){
     fseek(stdin, 0, SEEK_END);
 }
 
-// função responsável por excluir veiculos
+// funï¿½ï¿½o responsï¿½vel por excluir veiculos
 void excluir_veiculo(){
 	char str_id_veiculo[10];
 	int id_veiculo;
@@ -982,9 +982,9 @@ void excluir_veiculo(){
 	// limpando o buffer do teclado
     fseek(stdin, 0, SEEK_END);
 
-	// verifica se str_id_veiculos só contém números
+	// verifica se str_id_veiculos sï¿½ contï¿½m nï¿½meros
 	if(str_somente_numeros(str_id_veiculo) == 1){
-		// se chegou aqui é porque o ID do veiculo é válido
+		// se chegou aqui ï¿½ porque o ID do veiculo ï¿½ vï¿½lido
 		sscanf(str_id_veiculo, "%i", &id_veiculo);
 
 		// rb abre para leitura (o arquivo deve existir)
@@ -999,40 +999,40 @@ void excluir_veiculo(){
 		// verifica se o veiculo existe
 		if(existe_veiculo(arq_veiculo, id_veiculo) == 1){
 			char modelo_veiculo[100];
-			// abre um novo arquivo temporário
+			// abre um novo arquivo temporï¿½rio
 			FILE *arq_temp = fopen("temp_veiculo.txt", "a+b");
 			if(arq_temp == NULL){
 				printf("\nFalha ao criar arquivo temporario!\n");
 				fclose(arq_veiculo);
 				exit(1); // aborta o programa
 			}
-			rewind(arq_veiculo); // vai para o início do arquivo
+			rewind(arq_veiculo); // vai para o inï¿½cio do arquivo
 			t_veiculo veiculo;
 
 			// loop para percorrer o arquivo
 			while(1){
 
-				// fread retorna o número de elementos lidos com sucesso
+				// fread retorna o nï¿½mero de elementos lidos com sucesso
 				size_t result = fread(&veiculo, sizeof(t_veiculo), 1, arq_veiculo);
 
-				// se for 0, é porque não há mais elemento, então sai do loop
+				// se for 0, ï¿½ porque nï¿½o hï¿½ mais elemento, entï¿½o sai do loop
 				if(result == 0) break;
 
-				// só copia pro novo arquivo se for diferente
+				// sï¿½ copia pro novo arquivo se for diferente
 				if(veiculo.id != id_veiculo){
-					// escreve no arquivo temporário
+					// escreve no arquivo temporï¿½rio
 					fwrite(&veiculo, sizeof(t_veiculo), 1, arq_temp);
 				}
 				else
 					strcpy(modelo_veiculo, veiculo.modelo);
 			}
 
-			// antes de fazer operações de remover arquivo e renomear,
-			// é preciso fechar os dois arquivos
+			// antes de fazer operaï¿½ï¿½es de remover arquivo e renomear,
+			// ï¿½ preciso fechar os dois arquivos
 			fclose(arq_veiculo);
 			fclose(arq_temp);
 
-			// depois de fechar o arquivo, então tentamos remover
+			// depois de fechar o arquivo, entï¿½o tentamos remover
 			if(remove("veiculo.txt") != 0)
 				printf("\nErro ao deletar o arquivo \"veiculo.bin\"\n");
 			else {
