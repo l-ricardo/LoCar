@@ -280,7 +280,7 @@ void cadastrar_cliente(){
     fseek(stdin, 0, SEEK_END);
 
 	printf("Digite o numero da casa do cliente: ");
-	scanf("%4[^\n]%*c", &cliente.endereco.numero);
+	scanf("%4[^\n]%*c", cliente.endereco.numero);
 	// limpando o buffer do teclado
     fseek(stdin, 0, SEEK_END);
 
